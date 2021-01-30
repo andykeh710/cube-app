@@ -22,9 +22,11 @@ router.post('/', function(req, res, next) {
     description: req.body.description,
     image_url: req.body.imageUrl,
     level: req.body.difficultyLevel,
+    accessories: []
     });
     
     newCube.save()
+    res.redirect('/')
     .then((result) => {
       console.log(result)
       res.send(result)
@@ -32,7 +34,7 @@ router.post('/', function(req, res, next) {
       .catch((err) => {
         res.send(err)
       })
-
+      
 });
 
 router.get('/accessory', function(req, res, next) {
@@ -49,5 +51,8 @@ router.post('/accessory', function(req, res, next) {
   });
   newAcc.save()
     .then((res) => { console.log('the new accessory is ', res)})
+    res.redirect('/');
 })
+
+
 module.exports = router;
