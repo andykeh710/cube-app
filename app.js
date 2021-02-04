@@ -9,6 +9,11 @@ const mongoose = require('mongoose');
 const hbs = require('hbs');
 // Routers that have all the get/post etc routes
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const jwt = require('jsonwebtoken');
+
+
 var indexRouter = require('./routes/index');
 var createCubeRouter = require('./routes/create');
 var attachAccessoryRouter = require('./routes/attach');
