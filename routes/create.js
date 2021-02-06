@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Cube = require('../models/cube');
 const Accessory = require('../models/accessory');
-
+const User = require('../models/users');
 /* GET Add Cube page. */
 router.get('/', function(req, res, next) {
   console.log('add a cube')
@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) {
     name: req.body.name,
     description: req.body.description,
     image_url: req.body.imageUrl,
+    difficulty: req.body.difficultyLevel,
     level: req.body.difficultyLevel,
     accessories: []
     });
@@ -38,12 +39,12 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/accessory', function(req, res, next) {
-  console.log('Create accessory');
+ //console.log('Create accessory');
   res.render('createAccessory', { title: 'Add Accessory'})
 });
 
 router.post('/accessory', function(req, res, next) {
-  console.log("the accessory form is ", req.body)
+  //console.log("the accessory form is ", req.body)
   const newAcc = new Accessory({
     name: req.body.name,
     description: req.body.description,

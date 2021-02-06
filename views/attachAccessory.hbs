@@ -1,50 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<h1>Attach a new accessory</h1>
+<div class="form">
+    <h2>{{cube.name}}</h2>
+    <img class="cube" src={{cube.image_url}}>
+    <form action='/accessory/attach/{{cube._id}}' method="POST">
+        {{#if dropAcc}}
+            <label for="accessory">Accessories</label>
+            <select id="accessory" name="accessory">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Attach Accessory</title>
-  <link href="./stylesheets/site.css" type="text/css" rel="stylesheet">
-  <link rel='shortcut icon' type='image/x-icon' href='./images/favicon.png' />
-</head>
+                {{#each dropAcc}}
+                    <option value={{_id}}>{{name}}</option>
+                {{/each}}
 
-<body>
-  <div class="container">
-    <header>
-      <ul>
-        <li><img class="logo" src="/images/logo.png"></li>
-        <li><a href="/">Browse</a></li>
-        <li><a href="/">Add a Cube</a></li>
-        <li><a href="/">Add Accessory</a></li>
-        <li><a href="/">About</a></li>
-      </ul>
-    </header>
-    <main>
-      <h1>Attach a new accessory</h1>
-      <div class="form">
-        <h2>{{cube.name}}</h2>
-        <img class="cube" src="{{cube.image_url}}">
-        {{#if accessory}}
-        <form action='/attach/{{cube._id}}' method="post">
-          <label for="accessory">Accessories</label>
-          <select id="accessory" name="accessory">
-            {{#each accessory}}
-          <option value="{{name}}">{{name}}</option>
-            {{/each}}
-      
-          </select>
-          <input type="submit" value="Attach">
-        </form>
+            </select>
+            <input type="submit" value="Attach">
         {{else}}
-        <h3 class="italic">This cube has all available accessories so far or there is no available at all...
-        </h3>
+            <div class="details">
+                <h2 align="center">This cube has all the accessories!</h2>
+            </div>
+            
         {{/if}}
-        <a class="btn" href="/">Back</a>
-      </div>
-    </main>
-  </div>
-  <footer>@Cubicle: Exercise for Express.js and Handlebars</footer>
-
-</body>
-
-</html>
+    </form>
+    {{#if cube.accessories}}
+    <h2>Attached Accessories:</h2>
+    <ul>
+        {{#each cube.accessories}}
+        <li><h3>{{name}}</h3></li>
+        {{/each}}
+    </ul>
+    {{else}}
+        {{#if dropAcc}}
+            <!--if accessories are available to add -->
+            <h3 class="italic">No accessories added yet</h3>
+        {{else}}
+            <!--no accessories attached and none in the dropdown -->
+            <h3 class="italic">You need to add accessories first!</h3>
+        {{/if}}
+    {{/if}}
+    
+    <a class="btn" href="/">Back</a>
+</div>

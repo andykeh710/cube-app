@@ -1,14 +1,15 @@
-const mogoose = require('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
 const usersSchema = new Schema({
-    id: mogoose.id, 
+    // id: mongoose.id, 
     username: String,
     password: String,
+    cubes: [{ type: Schema.Types.ObjectId, ref: 'Cube'}]
 });
 
-const User = mogoose.mosdel('User', usersSchema);
+const User = mongoose.model('User', usersSchema);
 
 
 module.exports = User;
