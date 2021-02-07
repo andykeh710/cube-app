@@ -33,7 +33,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 
-router.post('/:id', function(req, res, next) {
+router.post('/:uid', function(req, res, next) {
   console.log("ATTTAVCH ACC POST _____________________-----------------------")
   console.log('The attach form is ', req.body, req.params.id)
   let selId = req.body.accessory;

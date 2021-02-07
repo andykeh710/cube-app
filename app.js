@@ -1,4 +1,3 @@
-//const dotenv = require('dotenv')
 
 var createError = require('http-errors');
 var express = require('express'); // Require library of code that is Express
@@ -19,7 +18,7 @@ var createCubeRouter = require('./routes/create');
 var attachAccessoryRouter = require('./routes/attach');
 var detailsRouter = require('./routes/details');
 var aboutRouter = require('./routes/about')
-
+const editRouter = require('./routes/edit');
 var app = express(); 
 
 
@@ -42,6 +41,9 @@ require('dotenv').config()
 app.set('views', path.join(__dirname, 'views')); // setting folder for public files
 app.set('view engine', 'hbs'); // setting view engine to hbs, engine compiles views and data into HTML
 hbs.registerPartials('./views/partials');
+hbs.registerHelper('isEqual', function (expectedValue, value) {
+  return value === expectedValue;
+});
 
 
 app.use(logger('dev'));
@@ -54,11 +56,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 
 app.use('/', indexRouter); // Router for home page 
-app.use('/create', createCubeRouter);
-app.use('/attach', attachAccessoryRouter)
+app.use('/accessory/create', createCubeRouter);
+app.use('/accessory/attach', attachAccessoryRouter)
 app.use('/details', detailsRouter);
 app.use('/about', aboutRouter);
-
+app.use('/edit', editRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
