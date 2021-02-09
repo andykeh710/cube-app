@@ -56,8 +56,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 
 app.use('/', indexRouter); // Router for home page 
-app.use('/accessory/create', createCubeRouter);
-app.use('/accessory/attach', attachAccessoryRouter)
+app.use('/create', createCubeRouter);
+app.use('/accessory/attach', attachAccessoryRouter);
+// app.use('/accessory/create', createAccessoryRouter);
 app.use('/details', detailsRouter);
 app.use('/about', aboutRouter);
 app.use('/edit', editRouter);
