@@ -11,7 +11,7 @@ router.get('/:id', function(req, res, next) {
     .then((results) => {
       console.log("The single cube results are ", results)
       console.log("the accessories are ", results.accessories)
-      res.render('updatedDetailsPage', {cube: results, accessories: results.accessories})
+      res.render('updatedDetailsPage', {cube: results, accessories: results.accessories, loggedUser: req.user})
     } )
 
   

@@ -8,8 +8,10 @@ const usersSchema = new Schema({
     password: String,
     cubes: [{ type: Schema.Types.ObjectId, ref: 'Cube'}]
 });
-User.plugin(passportLocalMongoose);
+
+usersSchema.plugin(passportLocalMongoose);
 const User = mongoose.model('User', usersSchema);
+
 
 
 module.exports = User;

@@ -25,7 +25,7 @@ router.get('/:id', function(req, res, next) {
 
         //theAccessory = response
         console.log('Cube to attach accessory to ', response)
-        res.render('attachAccessory', { title: 'Attach Accessory', cube: responseCube, dropAcc: dropAcc});
+        res.render('attachAccessory', { title: 'Attach Accessory', cube: responseCube, dropAcc: dropAcc, loggedUser: req.user});
       });
 
 

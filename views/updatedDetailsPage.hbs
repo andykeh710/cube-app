@@ -6,18 +6,19 @@
 
     {{!-- {{#if isCreator}} --}}
     <div align="center">
-        <a class="btn" href="/">Back</a>
-        {{!-- {{#if loggedInUser}}        <!--only logged in users see these links--> --}}
+        
+        {{#if loggedUser}}        <!--only logged in users see these links--> 
             <a class="btn" href="/accessory/attach/{{cube._id}}">Attach Accessory</a>
             <a class="btn" href="/edit/{{cube._id}}">Edit</a>
             <a class="btn" href="/delete/{{cube._id}}">Delete</a>
+            <a class="btn" href="/">Back</a>
         {{!-- {{/if}} --}}
     </div>
-    {{!-- {{else}} --}}
+    {{else}}
     <div>
         <a class="btn" href="/">Back</a>
     </div>
-    {{!-- {{/if}} --}}
+    {{/if}}
 
 </div>
 
@@ -35,3 +36,42 @@
         <h3 class="italic">This cube has no accessories yet...</h3>
     {{/each}}
 </div>
+
+
+{{!-- <h1>{{cube.name}}</h1>
+<img class="cube" src={{cube.image_url}}>
+<div class="details">
+    <p><span>Description:</span> {{cube.description}}</p>
+    <p><span>Difficulty level:</span> {{cube.difficulty}}</p>
+
+    {{#if isCreator}}
+    <div align="center">
+        <a class="btn" href="/">Back</a>
+        {{#if loggedInUser}}        <!--only logged in users see these links-->
+            <a class="btn" href="/accessory/attach/{{cube._id}}">Attach Accessory</a>
+            <a class="btn" href="/edit/{{cube._id}}">Edit</a>
+            <a class="btn" href="/delete/{{cube._id}}">Delete</a>
+        {{/if}}
+    </div>
+    {{else}}
+    <div>
+        <a class="btn" href="/">Back</a>
+    </div>
+    {{/if}}
+
+</div>
+
+
+<h2>Accessories</h2>
+<div class="accessories">
+    
+    {{#each accessories}}
+        <div class="accessory">
+            <img src={{image_url}} alt={{name}}>
+            <h3>{{name}}</h3>
+            <p>{{description}}</p>
+        </div>
+    {{else}}
+        <h3 class="italic">This cube has no accessories yet...</h3>
+    {{/each}}
+</div> --}}

@@ -6,7 +6,7 @@ const User = require('../models/users');
 /* GET Add Cube page. */
 router.get('/', function(req, res, next) {
   console.log('add a cube')
-  res.render('create', { title: 'Create a Cube ' });
+  res.render('create', { title: 'Create a Cube ', loggedUser: req.user});
 });
 
 router.get('/accessory', function(req, res, next){
@@ -23,7 +23,8 @@ router.post('/', function(req, res, next) {
     image_url: req.body.imageUrl,
     difficulty: req.body.difficultyLevel,
     level: req.body.difficultyLevel,
-    accessories: []
+    accessories: [],
+    maker: req.user._id
     });
     
     newCube.save()
@@ -40,7 +41,7 @@ router.post('/', function(req, res, next) {
 
 router.get('/accessory', function(req, res, next) {
  //console.log('Create accessory');
-  res.render('createAccessory', { title: 'Add Accessory'})
+  res.render('createAccessory', { title: 'Add Accessory', loggedUser: req.user})
 });
 
 router.post('/accessory', function(req, res, next) {
