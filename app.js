@@ -20,6 +20,7 @@ var attachAccessoryRouter = require('./routes/attach');
 var detailsRouter = require('./routes/details');
 var aboutRouter = require('./routes/about')
 const editRouter = require('./routes/edit');
+const cookieRouter = require('./routes/cookie');
 var app = express(); 
 
 require('dotenv').config()
@@ -66,7 +67,7 @@ app.use('/accessory/attach', attachAccessoryRouter);
 app.use('/details', detailsRouter);
 app.use('/about', aboutRouter);
 app.use('/edit', editRouter);
-
+app.use('/cookie', cookieRouter);
 
 // use static authenticate method of model in LocalStrategy
 passport.use(new LocalStrategy(User.authenticate()));
