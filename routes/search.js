@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const Cube = require('../models/cube');
 
-/* GET search results page. */
 router.get('/', function(req, res, next) {
     console.log('search get');
     let searchQuery = req.query;
@@ -10,16 +9,16 @@ router.get('/', function(req, res, next) {
     console.log('from', searchQuery.from, 'to', searchQuery.to);
     let min = searchQuery.from;
     let max = searchQuery.to;
-    let text = searchQuery.search;       //.toLowerCase();
+    let text = searchQuery.search;     
+
 
     if (text == '' && min == '' && max == '') {
             res.redirect('/');
     } else {
-        //console.log('name:', text, 'from:', min, 'to:', max);
-        Cube.find({'name': new RegExp(text, "i"), 'difficulty': {$gte: min, $lte: max}}) //
+        Cube.find({'name': new RegExp(text, "i")}) //
         .then((cubes) => {
             console.log(cubes);
-            res.render('search', { title: 'Search Results', cube: cubes, loggedInUser: req.user });
+            res.render('search', { title: 'Results', cube: cubes, loggedInUser: req.user });
         })
         .catch((err) => console.log(err));
     }
